@@ -10,7 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_133542) do
+ActiveRecord::Schema.define(version: 2019_09_20_063529) do
+
+  create_table "comments", force: :cascade do |t|
+    t.text "description"
+    t.integer "post_id"
+    t.integer "user_id"
+    t.integer "reply_to_id"
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_comments_on_post_id"
+    t.index ["reply_to_id"], name: "index_comments_on_reply_to_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_comments_on_votable_type_and_votable_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "subreddit_id"
+    t.integer "user_id"
+    t.string "votable_type"
+    t.integer "votable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subreddit_id"], name: "index_posts_on_subreddit_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
+    t.index ["votable_type", "votable_id"], name: "index_posts_on_votable_type_and_votable_id"
+  end
+
+  create_table "subreddits", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "subreddits_users", force: :cascade do |t|
+    t.integer "subreddit_id"
+    t.integer "user_id"
+    t.index ["subreddit_id"], name: "index_subreddits_users_on_subreddit_id"
+    t.index ["user_id"], name: "index_subreddits_users_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
@@ -21,6 +64,14 @@ ActiveRecord::Schema.define(version: 2019_09_19_133542) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "email"
     t.string "password"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.integer "user_id"
+    t.boolean "upvote"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_votes_on_user_id"
   end
 
 end
