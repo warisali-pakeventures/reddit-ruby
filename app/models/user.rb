@@ -7,4 +7,7 @@ class User < ApplicationRecord
   validates :username, :email, uniqueness: true
   validates :password, length: {in: 8..20}
   validates :description, length: {maximum: 300}
+
+  # TODO: validate url format
+  # TODO: validate email format
 end
