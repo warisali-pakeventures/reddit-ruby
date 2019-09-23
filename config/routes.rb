@@ -11,4 +11,6 @@ Rails.application.routes.draw do
 
   get '/register', to: 'users#new'
   get '/dashboard', to: 'users#dashboard'
+
+  get '/r/:subreddit', to: 'subreddits#show'
 end

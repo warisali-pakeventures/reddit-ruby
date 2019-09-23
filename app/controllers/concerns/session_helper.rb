@@ -12,11 +12,19 @@ module SessionHelper
   end
 
   def logged_in_user
-    User.find session[:userid] if session[:userid]
+    begin
+      return User.find session[:userid]
+    rescue
+      return nil
+    end
   end
 
   def log_user_out
     session.delete(:userid)
+  end
+
+  def validate_session
+    redirect_to :login if is_user_not_logged_in?
   end
 end
 
