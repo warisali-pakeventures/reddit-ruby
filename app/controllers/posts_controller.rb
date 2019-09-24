@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  include SessionHelper
+  before_action :authenticate_user!, except: [:show]
+
   before_action :set_params, only: [:show, :edit, :update, :destroy]
   before_action :set_params_for_create, only: [:create]
 
@@ -11,7 +12,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    @user = User.find(session[:userid])
   end
 
   # GET /posts/new
@@ -59,7 +59,7 @@ class PostsController < ApplicationController
     begin
       @subreddit = Subreddit.find(params[:subreddit_id])
       @post = Post.find(params[:id])
-      @user = logged_in_user
+      @user = current_user
     rescue
       render plain: '404 Not Found!', status: 404
     end
@@ -68,7 +68,7 @@ class PostsController < ApplicationController
   def set_params_for_create
     begin
       @subreddit = Subreddit.find(params[:subreddit_id])
-      @user = logged_in_user
+      @user = current_user
     rescue
       render plain: '404 Not Found!', status: 404
     end

@@ -1,0 +1,13 @@
+<div>
+  <h2>Actions</h2>
+
+  <% nav_items.each do |link| %>
+    <%= link_to link[:name], link[:path] %> |
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Logout', destroy_user_session_path, method: :delete %>
+  <% else %>
+    <%= link_to 'Login', user_session_path %>
+<% end %>
+</div>

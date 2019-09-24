@@ -1,6 +1,5 @@
 class SubredditsController < ApplicationController
-  include SessionHelper
-  before_action :validate_session, only: [:new, :add_member, :remove_member]
+  before_action :authenticate_user!, only: [:new, :create, :update, :destroy, :add_member, :remove_member]
   before_action :set_subreddit, only: [:show, :edit, :update, :destroy, :show_by_name, :add_member, :remove_member]
 
 
@@ -73,7 +72,7 @@ class SubredditsController < ApplicationController
     begin
       @subreddit = Subreddit.find_by_name(params[:subreddit]) if params[:subreddit]
       @subreddit = Subreddit.find(params[:id]) if params[:id]
-      @user = logged_in_user
+      @user = current_user
     rescue
       render plain: '404 Not Found!', status: 404
     end
