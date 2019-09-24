@@ -24,7 +24,7 @@
 <% @posts.each do |post| %>
   <div>
     <hr/>
-    <h4><%= link_to post.title, subreddit_post_path(@subreddit.id, post) %></h4>
+    <h3><%= link_to post.title, subreddit_post_path(@subreddit.id, post) %></h3>
     <h5>Date: <%= post.created_at %></h5>
     <p><%= post.description %></p>
     <hr/>

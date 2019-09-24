@@ -40,7 +40,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to subreddit_post_path(@subreddit.ir, @post)
+      redirect_to subreddit_post_path(@subreddit.id, @post)
     else
       render :edit
     end
