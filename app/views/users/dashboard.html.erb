@@ -7,3 +7,17 @@
   <%= link_to 'Find Subreddit', subreddits_path %> |
   <%= link_to 'Logout', logout_path %> |
 </div>
+
+<br />
+<div>
+  <h2>Posts from Subreddits you joined</h2>
+  <% @posts.each do |post| %>
+    <div>
+      <hr/>
+      <h3><%= link_to post.title, subreddit_post_path(post.subreddit_id, post) %></h3>
+      <h5>Date: <%= post.created_at %></h5>
+      <p><%= post.description %></p>
+      <hr/>
+    </div>
+  <% end %>
+</div>

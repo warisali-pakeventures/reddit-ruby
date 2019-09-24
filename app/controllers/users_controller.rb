@@ -53,6 +53,11 @@ class UsersController < ApplicationController
   def dashboard
     if is_user_logged_in?
       @user = logged_in_user
+      @posts = []
+      @user.subreddits.each do |s|
+        @posts += s.posts.order(updated_at: :desc, created_at: :desc)
+                      .limit(3).to_a
+      end
     else
       redirect_to :login
     end
