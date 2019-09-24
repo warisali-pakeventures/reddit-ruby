@@ -1,7 +1,7 @@
 class SubredditsController < ApplicationController
   include SessionHelper
-  before_action :validate_session, only: [:new]
-  before_action :set_subreddit, only: [:show, :edit, :update, :destroy, :show_by_name]
+  before_action :validate_session, only: [:new, :add_member, :remove_member]
+  before_action :set_subreddit, only: [:show, :edit, :update, :destroy, :show_by_name, :add_member, :remove_member]
 
 
   # GET /subreddits
@@ -18,6 +18,16 @@ class SubredditsController < ApplicationController
   def show_by_name
     @posts = @subreddit.posts.order(updated_at: :desc, created_at: :desc)
     render :show
+  end
+
+  def add_member
+    @subreddit.add_member(@user)
+    redirect_to subreddit_name_path(@subreddit.name)
+  end
+
+  def remove_member
+    @subreddit.remove_member(@user)
+    redirect_to subreddit_name_path(@subreddit.name)
   end
 
   # GET /subreddits/new

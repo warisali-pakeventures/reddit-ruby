@@ -8,4 +8,12 @@ class Subreddit < ApplicationRecord
   validates :name, uniqueness: true
   validates :name, :description, presence: true
   validates :description, length: {maximum: 300}
+
+  def add_member(user)
+    self.users << user
+  end
+
+  def remove_member(user)
+    self.users.delete user
+  end
 end
