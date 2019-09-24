@@ -1,6 +1,5 @@
-<h3>Subreddit: <%= @subreddit.name %></h3>
 
-<%= form_with(model: post, local: true) do |form| %>
+<%= form_with(model: post, url: [@subreddit, @post], local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>

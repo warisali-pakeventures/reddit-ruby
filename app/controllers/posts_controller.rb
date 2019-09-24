@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   include SessionHelper
   before_action :set_params, only: [:show, :edit, :update, :destroy]
+  before_action :set_params_for_create, only: [:create]
 
   # GET /posts
   # GET /posts.json
@@ -30,7 +31,7 @@ class PostsController < ApplicationController
     @user.posts << @post
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to subreddit_post_path(@subreddit.id, @post)
     else
       render :new
     end
@@ -39,7 +40,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to subreddit_post_path(@subreddit.ir, @post)
     else
       render :edit
     end
@@ -48,7 +49,7 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    redirect_to subreddit_name_path(@subreddit.id)
   end
 
   private
@@ -58,6 +59,15 @@ class PostsController < ApplicationController
     begin
       @subreddit = Subreddit.find(params[:subreddit_id])
       @post = Post.find(params[:id])
+      @user = logged_in_user
+    rescue
+      render plain: '404 Not Found!', status: 404
+    end
+  end
+
+  def set_params_for_create
+    begin
+      @subreddit = Subreddit.find(params[:subreddit_id])
       @user = logged_in_user
     rescue
       render plain: '404 Not Found!', status: 404

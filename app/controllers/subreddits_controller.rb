@@ -16,7 +16,7 @@ class SubredditsController < ApplicationController
 
   # GET /r/:subreddit
   def show_by_name
-    @posts = @subreddit.posts.all
+    @posts = @subreddit.posts.order(updated_at: :desc, created_at: :desc)
     render :show
   end
 
