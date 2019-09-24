@@ -1,7 +1,7 @@
 class SubredditsController < ApplicationController
   include SessionHelper
   before_action :validate_session, only: [:new]
-  before_action :set_subreddit, only: [:show, :edit, :update, :destroy]
+  before_action :set_subreddit, only: [:show, :edit, :update, :destroy, :show_by_name]
 
 
   # GET /subreddits
@@ -9,9 +9,15 @@ class SubredditsController < ApplicationController
     @subreddits = Subreddit.all
   end
 
-  # GET /r/:subreddit
+  # GET /subreddits/:id
   def show
+    redirect_to subreddit_name_path(@subreddit.name)
+  end
+
+  # GET /r/:subreddit
+  def show_by_name
     @posts = @subreddit.posts.all
+    render :show
   end
 
   # GET /subreddits/new
@@ -28,7 +34,7 @@ class SubredditsController < ApplicationController
     @subreddit = Subreddit.new(subreddit_params)
 
     if @subreddit.save
-      redirect_to subreddit_path(@subreddit)
+      redirect_to subreddit_name_path(@subreddit.name)
     else
       render :new
     end
@@ -55,7 +61,8 @@ class SubredditsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_subreddit
     begin
-      @subreddit = Subreddit.find_by_name(params[:subreddit])
+      @subreddit = Subreddit.find_by_name(params[:subreddit]) if params[:subreddit]
+      @subreddit = Subreddit.find(params[:id]) if params[:id]
       @user = logged_in_user
     rescue
       render plain: '404 Not Found!', status: 404

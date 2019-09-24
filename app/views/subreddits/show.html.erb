@@ -9,6 +9,7 @@
 <div>
   <h2>Actions</h2>
   <% if @user %>
+    <%= link_to 'Dashboard', dashboard_path %> |
     <%= link_to 'New Post', new_post_path(subreddit_id: @subreddit.id) %> |
     <%= link_to 'Logout', logout_path %> |
   <% else %>
