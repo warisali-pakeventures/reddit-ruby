@@ -12,13 +12,7 @@
 
    if @user.posts.include?(@post)
      links += [
-         {name: 'Edit', path: edit_subreddit_post_path(@subreddit.id, @post)}
-     ]
-   end
-
-   if user_signed_in?
-     links += [
-         {name: 'New Comment', path: new_comment_path(post_id: @post.id)}
+         {name: 'Edit', path: edit_subreddit_post_path(@post)}
      ]
    end
 %>
@@ -29,3 +23,7 @@
   <strong>Description:</strong>
   <%= @post.description %>
 </p>
+
+<div>
+  <%= commontator_thread(@post) %>
+</div>

@@ -1,6 +1,4 @@
 class Post < ApplicationRecord
-  has_many :comments
-  has_many :votes, as: :votable
-
+  acts_as_commontable dependent: :destroy
   validates :title, presence: true
 end

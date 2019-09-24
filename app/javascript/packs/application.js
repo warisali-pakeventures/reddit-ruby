@@ -8,6 +8,11 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 
+require('jquery')
+// If jquery-ujs was installed through jquery-rails
+require('jquery_ujs')
+// If jquery-ujs was installed through webpacker and yarn/npm/bower
+require('jquery-ujs')
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
