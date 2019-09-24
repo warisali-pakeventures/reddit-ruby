@@ -1,4 +1,5 @@
-<%= form_with(model: post, local: true) do |form| %>
+
+<%= form_with(model: post, url: [@subreddit, @post], local: true) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -12,18 +13,13 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :date %>
-    <%= form.datetime_select :date %>
-  </div>
-
-  <div class="field">
     <%= form.label :title %>
     <%= form.text_field :title %>
   </div>
 
   <div class="field">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, rows: 20, cols: 90 %>
   </div>
 
   <div class="actions">

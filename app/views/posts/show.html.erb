@@ -1,19 +1,37 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @post.date %>
-</p>
-
+<h1>/r/<%= link_to @subreddit.name, @subreddit %></h1>
 <p>
   <strong>Title:</strong>
-  <%= @post.title %>
+  <%= @post.title %><br/>
+  <strong>Date:</strong>
+  <%= @post.created_at %>
 </p>
+
+<div>
+  <h2>Actions</h2>
+  <% if @user %>
+    <%= link_to 'Dashboard', dashboard_path %> |
+    <% if @user.posts.include?(@post) %>
+      <%= link_to 'Edit', edit_subreddit_post_path(@subreddit.id, @post) %> |
+    <% end %>
+    <%= link_to 'New Comment', new_comment_path(post_id: @post.id) %> |
+    <%= link_to 'Logout', logout_path %> |
+  <% else %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+</div>
+
 
 <p>
   <strong>Description:</strong>
   <%= @post.description %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
+
+<!--<h4>Comments</h4>-->
+<%# @post.comments.each do |comment| %>
+<!--  <div>-->
+<!--    <p><%#= comment.description %></p>-->
+<!--    <p>By <%#= User.find(comment.user_id).username %> on <%#= comment.created_at %></p>-->
+<!--    <p><%#= link_to 'Reply', new_comment_path(post_id: @post.id, comment_id: comment.id) %></p>-->
+<!--  </div>-->
+<%# end %>

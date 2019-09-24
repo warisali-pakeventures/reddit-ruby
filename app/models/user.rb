@@ -10,4 +10,15 @@ class User < ApplicationRecord
 
   # TODO: validate url format
   # TODO: validate email format
+  #
+
+  def self.authenticate(username, password)
+    begin
+      user = User.find_by_username(username)
+      return user.password == password
+    rescue
+      return false
+    end
+  end
+
 end

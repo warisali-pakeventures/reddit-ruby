@@ -1,14 +1,38 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @subreddit.name %>
-</p>
+<h1>r/<%= @subreddit.name %></h1>
 
 <p>
   <strong>Description:</strong>
   <%= @subreddit.description %>
 </p>
 
-<%= link_to 'Edit', edit_subreddit_path(@subreddit) %> |
-<%= link_to 'Back', subreddits_path %>
+<br/>
+<div>
+  <h2>Actions</h2>
+  <% if @user %>
+    <%= link_to 'Dashboard', dashboard_path %> |
+    <% if @subreddit.users.include? @user %>
+      <%= link_to 'New Post', new_subreddit_post_path(subreddit_id: @subreddit.id) %> |
+      <%= link_to 'Leave Subreddit', leave_subreddit_path(@subreddit.name) %> |
+    <% else %>
+      <%= link_to 'Join Subreddit', join_subreddit_path(@subreddit.name) %> |
+    <% end %>
+    <%= link_to 'Logout', logout_path %> |
+  <% else %>
+    <%= link_to 'Login', login_path %>
+  <% end %>
+</div>
+
+<br/>
+
+<h2>Posts</h2>
+
+<% @posts.each do |post| %>
+  <div>
+    <hr/>
+    <h3><%= link_to post.title, subreddit_post_path(@subreddit.id, post) %></h3>
+    <h5>Date: <%= post.created_at %></h5>
+    <p><%= post.description %></p>
+    <hr/>
+  </div>
+<% end %>
+

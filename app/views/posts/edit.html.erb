@@ -1,6 +1,6 @@
-<h1>Editing Post</h1>
+<h1>/r/<%= link_to @subreddit.name, @subreddit %></h1>
+<br/>
+<h2>Editing Post</h2>
 
 <%= render 'form', post: @post %>
 
-<%= link_to 'Show', @post %> |
-<%= link_to 'Back', posts_path %>
