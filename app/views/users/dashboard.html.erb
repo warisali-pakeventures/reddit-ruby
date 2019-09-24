@@ -1,14 +1,15 @@
 <h1>Hello, <%= @user.name %></h1>
 
 <br/>
-<div>
-  <h2>Actions</h2>
-  <%= link_to 'Create Subreddit', new_subreddit_path %> |
-  <%= link_to 'Find Subreddit', subreddits_path %> |
-  <%= link_to 'Logout', destroy_user_session_path %> |
-</div>
 
-<br />
+<% links = [
+    {name: 'Create Subreddit', path: new_subreddit_path},
+    {name: 'Find Subreddit', path: subreddits_path}
+] %>
+
+<%= render partial: "shared/navbar", locals: {nav_items: links} %>
+
+<br/>
 <div>
   <h2>Posts from Subreddits you joined</h2>
   <% @posts.each do |post| %>
