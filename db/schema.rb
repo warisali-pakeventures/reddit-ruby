@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_24_123913) do
+ActiveRecord::Schema.define(version: 2019_09_25_062414) do
 
   create_table "commontator_comments", force: :cascade do |t|
     t.integer "thread_id", null: false
@@ -60,13 +60,10 @@ ActiveRecord::Schema.define(version: 2019_09_24_123913) do
     t.text "description"
     t.integer "subreddit_id"
     t.integer "user_id"
-    t.string "votable_type"
-    t.integer "votable_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["subreddit_id"], name: "index_posts_on_subreddit_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
-    t.index ["votable_type", "votable_id"], name: "index_posts_on_votable_type_and_votable_id"
   end
 
   create_table "subreddits", force: :cascade do |t|

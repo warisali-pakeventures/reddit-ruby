@@ -1,82 +1,54 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:show]
 
-  before_action :set_params, only: [:show, :edit, :update, :destroy]
-  before_action :set_params_for_create, only: [:create]
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
-  # GET /posts
-  # GET /posts.json
   def index
     @posts = Post.all
   end
 
-  # GET /posts/1
   def show
     commontator_thread_show(@post)
   end
 
-  # GET /posts/new
   def new
-    @subreddit = Subreddit.find(params[:subreddit_id])
     @post = Post.new
+    @post.subreddit = Subreddit.find_by_id(params[:subreddit_id])
   end
 
-  # GET /posts/1/edit
   def edit
   end
 
-  # POST /posts
   def create
     @post = Post.new(post_params)
-    @subreddit.posts << @post
-    @user.posts << @post
 
     if @post.save
-      redirect_to subreddit_post_path(@subreddit.id, @post)
+      redirect_to @post
     else
       render :new
     end
   end
 
-  # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to subreddit_post_path(@subreddit.id, @post)
+      redirect_to @post
     else
       render :edit
     end
   end
 
-  # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to subreddit_name_path(@subreddit.id)
+    redirect_to @subreddit
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
-  def set_params
-    begin
-      @subreddit = Subreddit.find(params[:subreddit_id])
-      @post = Post.find(params[:id])
-      @user = current_user
-    rescue
-      render plain: '404 Not Found!', status: 404
-    end
+  def set_post
+    @post = Post.find_by_id(params[:id])
   end
 
-  def set_params_for_create
-    begin
-      @subreddit = Subreddit.find(params[:subreddit_id])
-      @user = current_user
-    rescue
-      render plain: '404 Not Found!', status: 404
-    end
-  end
-
-  # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:title, :description)
+    params.require(:post).permit(:title, :description, :subreddit_id, :user_id)
   end
 end
