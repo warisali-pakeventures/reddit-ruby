@@ -6,20 +6,21 @@
 </p>
 
 <br/>
-<% links = [
-    {name: 'Dashboard', path: dashboard_path},
-]
+<%
+  links = [
+      {name: 'Dashboard', path: root_path},
+  ]
 
-   if @subreddit.users.include? @user
-     links += [
-         {name: 'New Post', path: new_subreddit_post_path(subreddit_id: @subreddit.id)},
-         {name: 'Leave Subreddit', path: leave_subreddit_path(@subreddit.name)}
-     ]
-   else
-     links += [
-         {name: 'Join Subreddit', path: join_subreddit_path(@subreddit.name)}
-     ]
-   end
+  if @subreddit.users.include? current_user
+    links += [
+        {name: 'New Post', path: new_post_path(subreddit_id: @subreddit.id)},
+        {name: 'Leave Subreddit', path: leave_subreddit_path(@subreddit)}
+    ]
+  else
+    links += [
+        {name: 'Join Subreddit', path: join_subreddit_path(@subreddit)}
+    ]
+  end
 %>
 
 <%= render partial: "shared/navbar", locals: {nav_items: links} %>
@@ -31,7 +32,7 @@
 <% @posts.each do |post| %>
   <div>
     <hr/>
-    <h3><%= link_to post.title, subreddit_post_path(@subreddit.id, post) %></h3>
+    <h3><%= link_to post.title, post_path(post, subreddit_id: @subreddit.id) %></h3>
     <h5>Date: <%= post.created_at %></h5>
     <p><%= post.description %></p>
     <hr/>
