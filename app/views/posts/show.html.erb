@@ -1,0 +1,30 @@
+<%= render 'header' %>
+<br/>
+<br/>
+<div>
+  <h1 class=".diplay-1"><%= @post.title %></h1>
+  <p><%= @post.timestamp %></p>
+</div>
+
+<%
+  if current_user.present? && current_user.posts.include?(@post)
+    links = [
+        {name: 'Edit Post', path: edit_post_path(@post)}
+    ]
+  end
+%>
+
+<%= render partial: "shared/navbar", locals: {nav_items: links} %>
+
+<br/>
+<p>
+  <%= sanitize @post.description %>
+</p>
+
+<br/>
+<div>
+  <%= commontator_thread(@post) %>
+</div>
+<br/>
+<br/>
+<br/>

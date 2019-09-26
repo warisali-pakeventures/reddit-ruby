@@ -1,3 +1,14 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  mount Commontator::Engine => '/commontator'
+
+  devise_for :users
+
+  resources :subreddits do
+    get :join, on: :member
+    get :leave, on: :member
+  end
+
+  resources :posts
+
+  root 'users#show'
 end

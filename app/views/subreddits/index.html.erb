@@ -1,0 +1,13 @@
+<h1>Subreddits</h1>
+<br/>
+
+<%= render partial: "shared/navbar" %>
+
+<% @subreddits.each do |subreddit| %>
+  <div class="mb-3">
+    <h3><%= link_to subreddit.name, subreddit %></h3>
+
+    <small><%= subreddit.description %></small>
+  </div>
+<% end %>
+

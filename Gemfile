@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+git_source(:github) {|repo| "https://github.com/#{repo}.git"}
 
 ruby '2.6.4'
 
@@ -52,3 +52,20 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'devise'
+
+gem 'commontator'
+
+# gem 'jquery-rails'
+gem 'sassc-rails'
+
+gem 'acts_as_votable'
+
+gem 'will_paginate'
+gem 'betterlorem'
+gem 'bootstrap-will_paginate'
+
+gem 'bootstrap', '~> 4.3.1'
+
+gem "letter_opener", :group => :development

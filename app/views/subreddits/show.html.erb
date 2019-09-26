@@ -1,0 +1,34 @@
+<%
+  links = []
+  if @subreddit.users.include? current_user
+    links += [
+        {name: 'New Post', path: new_post_path(subreddit_id: @subreddit.id)},
+        {name: 'Leave Subreddit', path: leave_subreddit_path(@subreddit)}
+    ]
+  else
+    links += [
+        {name: 'Join Subreddit', path: join_subreddit_path(@subreddit)}
+    ]
+  end
+%>
+
+<%= render partial: "shared/navbar", locals: {nav_items: links} %>
+
+<h1>r/<%= @subreddit.name %></h1>
+<small>
+  <%= @subreddit.description %>
+</small>
+
+<br/>
+<br/>
+<br/>
+
+<div id="posts">
+  <h2>Posts</h2>
+  <br/>
+  <%= render @posts %>
+</div>
+
+<div id="infinite-scroll">
+  <%= will_paginate @posts %>
+</div>

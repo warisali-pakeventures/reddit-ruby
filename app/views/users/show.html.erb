@@ -1,0 +1,17 @@
+<h1>Hello, <%= current_user.name %></h1>
+
+<br/>
+
+<% links = [
+    {name: 'Create Subreddit', path: new_subreddit_path},
+    {name: 'Find Subreddit', path: subreddits_path}
+] %>
+
+<%= render partial: "shared/navbar", locals: {nav_items: links} %>
+
+<br/>
+<div>
+  <h4>Posts from Subreddits you joined</h4>
+  <br/>
+  <%= render @posts %>
+</div>
