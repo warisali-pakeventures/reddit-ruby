@@ -11,7 +11,7 @@ Commontator.configure do |config|
   # If you define your own custom method, make sure it is accessible to all controllers and views
   # by adding the method and a call to helper_method to ActionController::Base
   # Default: ->(context) { context.current_user }
-  config.current_user_proc = ->(context) { context.current_user }
+  config.current_user_proc = ->(context) {context.current_user}
 
   # javascript_proc
   # Type: Proc
@@ -22,7 +22,7 @@ Commontator.configure do |config|
   # through the view object (for example, view.flash)
   # However, the view does not include the main application's helpers
   # Default: ->(view) { '' }
-  config.javascript_proc = ->(view) { '' }
+  config.javascript_proc = ->(view) {''}
 
 
   # User (acts_as_commontator) Configuration
@@ -32,7 +32,7 @@ Commontator.configure do |config|
   # Arguments: a user (acts_as_commontator)
   # Returns: the user's name (String)
   # Default: ->(user) { I18n.t('commontator.anonymous') } (all users are anonymous)
-  config.user_name_proc = ->(user) { I18n.t('commontator.anonymous') }
+  config.user_name_proc = ->(user) {user.name}
 
   # user_link_proc
   # Type: Proc
@@ -43,7 +43,7 @@ Commontator.configure do |config|
   # comments will become a hyperlink pointing to this path
   # The main application's routes can be accessed through the app_routes object
   # Default: ->(user, app_routes) { '' } (no link)
-  config.user_link_proc = ->(user, app_routes) { '' }
+  config.user_link_proc = ->(user, app_routes) {''}
 
   # user_avatar_proc
   # Type: Proc
@@ -75,7 +75,7 @@ Commontator.configure do |config|
   # If the mailer argument is not nil, then Commontator intends to send an email to
   # the address returned; you can prevent it from being sent by returning a blank String
   # Default: ->(user, mailer) { user.try(:email) || '' }
-  config.user_email_proc = ->(user, mailer) { user.try(:email) || '' }
+  config.user_email_proc = ->(user, mailer) {user.try(:email) || ''}
 
   # user_mentions_proc
   # Type: Proc
@@ -122,7 +122,7 @@ Commontator.configure do |config|
   # Returns: a Boolean, true if and only if the user should be allowed to read that thread
   # Note: can be called with a user object that is nil (if they are not logged in)
   # Default: ->(thread, user) { true } (anyone can read any thread)
-  config.thread_read_proc = ->(thread, user) { true }
+  config.thread_read_proc = ->(thread, user) {true}
 
   # thread_moderator_proc
   # Type: Proc
@@ -130,7 +130,7 @@ Commontator.configure do |config|
   # Returns: a Boolean, true if and only if the user is a moderator for that thread
   # If you want global moderators, make this proc true for them regardless of thread
   # Default: ->(thread, user) { false } (no moderators)
-  config.thread_moderator_proc = ->(thread, user) { false }
+  config.thread_moderator_proc = ->(thread, user) {false}
 
   # comment_editing
   # Type: Symbol
@@ -235,7 +235,7 @@ Commontator.configure do |config|
   # The maximum number of comments loaded at once for the default setting is:
   # 20 + 20*5 + 20*5*2 == 320
   # Default: [ 20, 5, 2 ]
-  config.comments_per_page = [ 20, 5, 2 ]
+  config.comments_per_page = [20, 5, 2]
 
   # thread_subscription
   # Type: Symbol
