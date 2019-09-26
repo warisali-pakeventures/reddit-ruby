@@ -4,9 +4,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  acts_as_commontator
+
   has_and_belongs_to_many :subreddits
   has_many :posts
-  has_many :comments
 
   validates :name, presence: true
 end

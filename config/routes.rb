@@ -1,23 +1,14 @@
 Rails.application.routes.draw do
+  mount Commontator::Engine => '/commontator'
+
   devise_for :users
-  resources :comments
 
   resources :subreddits do
-    resources :posts
+    get :join, on: :member
+    get :leave, on: :member
   end
 
-  root 'users#dashboard'
+  resources :posts
 
-
-  # resources :users
-  # get '/login', to: 'users#login', as: :login
-  # post '/login', to: 'users#login_user'
-  # get '/logout', to: 'users#logout', as: :logout
-
-  # get '/register', to: 'users#new', as: :register
-  get '/dashboard', to: 'users#dashboard', as: :dashboard
-
-  get '/r/:subreddit', to: 'subreddits#show_by_name', as: :subreddit_name
-  get '/r/:subreddit/join', to: 'subreddits#add_member', as: :join_subreddit
-  get '/r/:subreddit/leave', to: 'subreddits#remove_member', as: :leave_subreddit
+  root 'users#show'
 end

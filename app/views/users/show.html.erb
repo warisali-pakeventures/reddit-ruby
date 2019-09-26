@@ -1,4 +1,4 @@
-<h1>Hello, <%= @user.name %></h1>
+<h1>Hello, <%= current_user.name %></h1>
 
 <br/>
 
@@ -15,9 +15,9 @@
   <% @posts.each do |post| %>
     <div>
       <hr/>
-      <h3><%= link_to post.title, subreddit_post_path(post.subreddit_id, post) %></h3>
-      <h5>Date: <%= post.created_at %></h5>
-      <p><%= post.description %></p>
+      <h3><%= link_to post[:post].title, post_path(post[:post], {subreddit_id: post[:subreddit_id]}) %></h3>
+      <h5>Date: <%= post[:post].created_at %></h5>
+      <p><%= post[:post].description %></p>
       <hr/>
     </div>
   <% end %>
