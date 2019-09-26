@@ -61,3 +61,8 @@ gem 'commontator'
 gem 'sassc-rails'
 
 gem 'acts_as_votable'
+
+gem 'will_paginate'
+gem 'betterlorem'
+gem 'bootstrap-sass'
+gem 'bootstrap-will_paginate'

@@ -7,7 +7,14 @@ class SubredditsController < ApplicationController
   end
 
   def show
-    @posts = @subreddit.posts.order(updated_at: :desc, created_at: :desc)
+    @posts = @subreddit.posts
+                 .paginate(page: params[:page], per_page: 10)
+                 .order(updated_at: :desc, created_at: :desc)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+    # @posts = @subreddit.posts.order(updated_at: :desc, created_at: :desc)
   end
 
   def join
