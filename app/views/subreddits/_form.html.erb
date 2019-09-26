@@ -1,6 +1,7 @@
+<br/>
 <%= form_with(model: subreddit, local: true) do |form| %>
   <% if subreddit.errors.any? %>
-    <div id="error_explanation">
+    <div class="alert alert-danger">
       <h2><%= pluralize(subreddit.errors.count, "error") %> prohibited this subreddit from being saved:</h2>
 
       <ul>
@@ -11,17 +12,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :name %>
-    <%= form.text_field :name, autofocus: true %>
+    <%= form.text_field :name, autofocus: true, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= form.label :description %>
-    <%= form.text_area :description, rows: 20, cols: 80 %>
+    <%= form.text_area :description, rows: 10, class: 'form-control' %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit class: "btn btn-primary" %>
   </div>
 <% end %>
+
+<br/>
+<br/>
+<br/>

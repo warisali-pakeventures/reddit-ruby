@@ -1,24 +1,13 @@
 <h1>Subreddits</h1>
+<br/>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<%= render partial: "shared/navbar" %>
 
-  <tbody>
-    <% @subreddits.each do |subreddit| %>
-      <tr>
-        <td><%= subreddit.name %></td>
-        <td><%= subreddit.description %></td>
-        <td><%= link_to 'Show', subreddit %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<% @subreddits.each do |subreddit| %>
+  <div class="mb-3">
+    <h3><%= link_to subreddit.name, subreddit %></h3>
 
-<br>
+    <small><%= subreddit.description %></small>
+  </div>
+<% end %>
 

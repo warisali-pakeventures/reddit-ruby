@@ -1,6 +1,6 @@
 <h1>Editing Subreddit</h1>
 
-<%= render 'form', subreddit: @subreddit %>
+<%= render partial: "shared/navbar" %>
 
-<%= link_to 'Show', @subreddit %> |
-<%= link_to 'Back', subreddits_path %>
+
+<%= render 'form', subreddit: @subreddit %>

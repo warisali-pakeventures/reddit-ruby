@@ -64,5 +64,6 @@ gem 'acts_as_votable'
 
 gem 'will_paginate'
 gem 'betterlorem'
-gem 'bootstrap-sass'
 gem 'bootstrap-will_paginate'
+
+gem 'bootstrap', '~> 4.3.1'

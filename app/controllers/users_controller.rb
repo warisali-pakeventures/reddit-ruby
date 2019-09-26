@@ -4,9 +4,8 @@ class UsersController < ApplicationController
   def show
     @posts = []
     current_user.subreddits.includes(:posts).each do |s|
-      posts = s.posts.order(updated_at: :desc, created_at: :desc)
+      @posts += s.posts.order(updated_at: :desc, created_at: :desc)
                     .limit(3).to_a
-      @posts += posts.map { |p| {post: p, subreddit_id: s.id} }
     end
   end
 
