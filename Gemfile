@@ -67,3 +67,5 @@ gem 'betterlorem'
 gem 'bootstrap-will_paginate'
 
 gem 'bootstrap', '~> 4.3.1'
+
+gem "letter_opener", :group => :development
