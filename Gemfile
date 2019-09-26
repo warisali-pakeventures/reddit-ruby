@@ -59,3 +59,5 @@ gem 'commontator'
 
 # gem 'jquery-rails'
 gem 'sassc-rails'
+
+gem 'acts_as_votable'
