@@ -11,14 +11,7 @@
 
 <br/>
 <div>
-  <h2>Posts from Subreddits you joined</h2>
-  <% @posts.each do |post| %>
-    <div>
-      <hr/>
-      <h3><%= link_to post[:post].title, post_path(post[:post], {subreddit_id: post[:subreddit_id]}) %></h3>
-      <h5>Date: <%= post[:post].created_at %></h5>
-      <p><%= post[:post].description %></p>
-      <hr/>
-    </div>
-  <% end %>
+  <h4>Posts from Subreddits you joined</h4>
+  <br/>
+  <%= render @posts %>
 </div>

@@ -1,16 +1,5 @@
-<h1>r/<%= @subreddit.name %></h1>
-
-<p>
-  <strong>Description:</strong>
-  <%= @subreddit.description %>
-</p>
-
-<br/>
 <%
-  links = [
-      {name: 'Dashboard', path: root_path},
-  ]
-
+  links = []
   if @subreddit.users.include? current_user
     links += [
         {name: 'New Post', path: new_post_path(subreddit_id: @subreddit.id)},
@@ -25,10 +14,18 @@
 
 <%= render partial: "shared/navbar", locals: {nav_items: links} %>
 
+<h1>r/<%= @subreddit.name %></h1>
+<small>
+  <%= @subreddit.description %>
+</small>
+
+<br/>
+<br/>
 <br/>
 
 <div id="posts">
   <h2>Posts</h2>
+  <br/>
   <%= render @posts %>
 </div>
 
