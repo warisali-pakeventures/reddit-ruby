@@ -1,0 +1,7 @@
+<div>
+  <hr/>
+  <h3><%= link_to post.title, post_path(post) %></h3>
+  <h5>Date: <%= post.timestamp %></h5>
+  <p><%= truncate(strip_tags(post.description), length: 600) %></p>
+  <hr/>
+</div>

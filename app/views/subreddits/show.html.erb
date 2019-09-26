@@ -27,15 +27,11 @@
 
 <br/>
 
-<h2>Posts</h2>
+<div id="posts">
+  <h2>Posts</h2>
+  <%= render @posts %>
+</div>
 
-<% @posts.each do |post| %>
-  <div>
-    <hr/>
-    <h3><%= link_to post.title, post_path(post, subreddit_id: @subreddit.id) %></h3>
-    <h5>Date: <%= post.created_at %></h5>
-    <p><%= post.description %></p>
-    <hr/>
-  </div>
-<% end %>
-
+<div id="infinite-scroll">
+  <%= will_paginate @posts %>
+</div>
