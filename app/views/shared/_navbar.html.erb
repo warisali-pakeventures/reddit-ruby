@@ -6,6 +6,7 @@
   <% end if local_assigns[:nav_items] %>
 
   <% if user_signed_in? %>
+    <%= link_to 'Profile', edit_user_registration_path, class: 'p-2 text-dark' %>
     <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: 'p-2 text-dark' %>
   <% else %>
     <%= link_to 'Login', user_session_path, class: 'p-2 text-dark' %>
