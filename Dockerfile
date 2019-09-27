@@ -7,6 +7,8 @@ WORKDIR /application
 
 # Set Rails environment to production
 ENV RAILS_ENV production
+ENV RAILS_LOG_TO_STDOUT true
+ENV RAILS_SERVE_STATIC_FILES true
 
 # Install gems, nodejs and precompile the assets
 RUN bundle install --deployment --without development test \
@@ -17,9 +19,10 @@ RUN bundle install --deployment --without development test \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && apt-get update \
     && apt-get install yarn -y \
-    && yarn install
+    && yarn install \
+    && bundle exec rails db:migrate
 
 # Start the application server
 # ENTRYPOINT ['./entrypoint.sh']
-CMD ["bundle","exec", "rake", "assets:precompile"]
+# CMD ["bundle","exec", "rake", "assets:precompile"]
 CMD ["bundle","exec", "rails", "server"]
