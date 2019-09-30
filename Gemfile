@@ -68,4 +68,6 @@ gem 'bootstrap-will_paginate'
 
 gem 'bootstrap', '~> 4.3.1'
 
-gem "letter_opener", :group => :development
+# gem "letter_opener", :group => :development
+
+gem 'dotenv-rails', groups: [:development, :test]

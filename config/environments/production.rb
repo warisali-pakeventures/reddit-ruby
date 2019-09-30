@@ -111,4 +111,7 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "http://reddit-ruby.herokuapp.com" }
 end
