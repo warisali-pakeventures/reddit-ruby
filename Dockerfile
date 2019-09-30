@@ -9,6 +9,7 @@ WORKDIR /application
 ENV RAILS_ENV production
 ENV RAILS_LOG_TO_STDOUT true
 ENV RAILS_SERVE_STATIC_FILES true
+ENV SECRET_KEY_BASE 7f22982c9f26c330201538b176bedbc9582637ebd715b65b4e4b93c5f61b702c53756e4729cdfe952705f991d78c24a0dbcdc7d04147caa6026e56331d067618
 
 # Install gems, nodejs and precompile the assets
 RUN bundle install --deployment --without development test \
