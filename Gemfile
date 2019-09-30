@@ -58,6 +58,7 @@ gem 'devise'
 gem 'commontator'
 
 # gem 'jquery-rails'
+# gem 'sassc'
 gem 'sassc-rails'
 
 gem 'acts_as_votable'
