@@ -111,5 +111,6 @@ Rails.application.configure do
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
 
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-  # config.secret_key_base = ENV['SECRET_KEY_BASE']
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "http://172.105.70.230" }
 end
